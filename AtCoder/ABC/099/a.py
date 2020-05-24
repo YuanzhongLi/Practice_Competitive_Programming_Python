@@ -1,6 +1,5 @@
 from sys import stdin
 input = stdin.readline
-import copy as cp
 
 def VI(N, init=0):
   return [init for _ in range(N)]
@@ -34,3 +33,9 @@ def POW(x, n):
     x *= x
     n >>= 1
   return ret
+
+N = int(input().rstrip())
+if N < 1000:
+  print("ABC")
+else:
+  print("ABD")

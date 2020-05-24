@@ -34,3 +34,8 @@ def POW(x, n):
     x *= x
     n >>= 1
   return ret
+
+S = input().rstrip()
+
+S += 'pp'
+print(S)

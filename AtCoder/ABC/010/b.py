@@ -34,3 +34,20 @@ def POW(x, n):
     x *= x
     n >>= 1
   return ret
+
+ok = [9, 7, 3, 1]
+
+def f(a):
+  for i in range(4):
+    if a >= ok[i]:
+      return a - ok[i]
+
+n = int(input().rstrip())
+
+A = list(map(int, input().rstrip().split()))
+
+ans = 0
+for i in range(n):
+  ans += f(A[i])
+
+print(ans)

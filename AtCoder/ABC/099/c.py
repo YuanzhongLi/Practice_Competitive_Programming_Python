@@ -1,6 +1,5 @@
 from sys import stdin
 input = stdin.readline
-import copy as cp
 
 def VI(N, init=0):
   return [init for _ in range(N)]
@@ -34,3 +33,29 @@ def POW(x, n):
     x *= x
     n >>= 1
   return ret
+
+MAX_N = int(1e5+5)
+
+dp = VI(MAX_N, MAX_N)
+dp[0] = 0
+dp[1] = 1
+
+for i in range(2, MAX_N):
+  dp[i] = min(dp[i], dp[i-1]+1)
+  for j in range(10):
+    six = POW(6, j)
+    if six > i:
+      break
+    else:
+      dp[i] = min(dp[i], dp[i-six]+1)
+
+  for j in range(10):
+    nine = POW(9, j)
+    if nine > i:
+      break
+    else:
+      dp[i] = min(dp[i], dp[i-nine]+1)
+
+N = int(input().rstrip())
+print(dp[N])
+

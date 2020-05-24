@@ -1,6 +1,7 @@
 from sys import stdin
 input = stdin.readline
 import copy as cp
+from math import sqrt
 
 def VI(N, init=0):
   return [init for _ in range(N)]
@@ -34,3 +35,29 @@ def POW(x, n):
     x *= x
     n >>= 1
   return ret
+
+ax, ay, bx, by, T, V = map(float, input().rstrip().split())
+
+n = int(input().rstrip())
+
+X = VD(n)
+Y = VD(n)
+
+for i in range(n):
+  X[i], Y[i] = map(float, input().rstrip().split())
+
+ok = False
+MAX_DIST = V * T
+esp = 1e-10
+for i in range(n):
+  dist = sqrt(POW(abs(ax-X[i]), 2)+POW(abs(ay-Y[i]),2)) + sqrt(POW(abs(bx-X[i]),2)+POW(abs(by-Y[i]),2))
+  if MAX_DIST + esp >= dist:
+    ok = True
+    break
+
+if ok:
+  print("YES")
+else:
+  print("NO")
+
+

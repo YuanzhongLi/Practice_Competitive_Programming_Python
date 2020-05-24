@@ -1,6 +1,5 @@
 from sys import stdin
 input = stdin.readline
-import copy as cp
 
 def VI(N, init=0):
   return [init for _ in range(N)]
@@ -34,3 +33,21 @@ def POW(x, n):
     x *= x
     n >>= 1
   return ret
+
+towers = [0 for _ in range(999)]
+towers[0] = 1
+
+for i in range(1, 999):
+  towers[i] = towers[i-1] + (i+1)
+
+a, b = map(int, input().rstrip().split())
+
+ans = -1
+for i in range(998):
+  if towers[i] - a == towers[i+1] - b:
+    ans = towers[i]-a
+    if ans >= 0:
+      break
+
+print(ans)
+
