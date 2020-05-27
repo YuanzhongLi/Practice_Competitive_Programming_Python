@@ -23,7 +23,7 @@ class Pair:
     return '{0} {1}'.format(self.first, self.second)
 
   def __lt__(self, pi):
-    return self.first < pi.second
+    return self.first < pi.first
 
 def POW(x, n):
   ret = 1

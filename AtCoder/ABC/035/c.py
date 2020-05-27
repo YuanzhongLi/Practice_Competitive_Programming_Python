@@ -1,5 +1,10 @@
 from sys import stdin
 input = stdin.readline
+import copy as cp
+from collections import deque, OrderedDict
+
+LINF = 1001002003004005006
+INF = 1001001001
 
 def VI(N, init=0):
   return [init for _ in range(N)]
@@ -34,28 +39,25 @@ def POW(x, n):
     n >>= 1
   return ret
 
-MAX_N = int(1e5+5)
+N, Q = map(int, input().rstrip().split())
 
-dp = VI(MAX_N, MAX_N)
-dp[0] = 0
-dp[1] = 1
+table = VI(N+1)
 
-for i in range(2, MAX_N):
-  dp[i] = min(dp[i], dp[i-1]+1)
-  for j in range(10):
-    six = POW(6, j)
-    if six > i:
-      break
-    else:
-      dp[i] = min(dp[i], dp[i-six]+1)
+for i in range(Q):
+  l, r = map(int, input().rstrip().split())
+  l -= 1
+  r -= 1
+  table[l] += 1
+  table[r+1] -= 1
 
-  for j in range(10):
-    nine = POW(9, j)
-    if nine > i:
-      break
-    else:
-      dp[i] = min(dp[i], dp[i-nine]+1)
+for i in range(1,N+1):
+  table[i] += table[i-1]
 
-N = int(input().rstrip())
-print(dp[N])
+ans = []
+for i in range(N):
+  if table[i] % 2 == 0:
+    ans.append('0')
+  else:
+    ans.append('1')
 
+print(''.join(ans))

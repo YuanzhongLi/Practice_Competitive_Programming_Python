@@ -1,7 +1,10 @@
 from sys import stdin
 input = stdin.readline
 import copy as cp
-from collections import deque
+from collections import deque, OrderedDict
+
+LINF = 1001002003004005006
+INF = 1001001001
 
 def VI(N, init=0):
   return [init for _ in range(N)]
@@ -25,7 +28,7 @@ class Pair:
     return '{0} {1}'.format(self.first, self.second)
 
   def __lt__(self, pi):
-    return self.first < pi.second
+    return self.first < pi.first
 
 def POW(x, n):
   ret = 1

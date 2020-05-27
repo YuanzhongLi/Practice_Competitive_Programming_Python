@@ -1,5 +1,10 @@
 from sys import stdin
 input = stdin.readline
+import copy as cp
+from collections import deque, OrderedDict
+
+LINF = 1001002003004005006
+INF = 1001001001
 
 def VI(N, init=0):
   return [init for _ in range(N)]
@@ -34,28 +39,47 @@ def POW(x, n):
     n >>= 1
   return ret
 
-MAX_N = int(1e5+5)
+S = input().rstrip()
+T = int(input().rstrip())
 
-dp = VI(MAX_N, MAX_N)
-dp[0] = 0
-dp[1] = 1
+cnt = 0
+x = 0
+y = 0
+for i in range(len(S)):
+  if S[i] == 'L':
+    x -= 1
+  elif S[i] == 'R':
+    x += 1
+  elif S[i] == 'U':
+    y += 1
+  elif S[i] == 'D':
+    y -= 1
+  else:
+    cnt += 1
 
-for i in range(2, MAX_N):
-  dp[i] = min(dp[i], dp[i-1]+1)
-  for j in range(10):
-    six = POW(6, j)
-    if six > i:
-      break
-    else:
-      dp[i] = min(dp[i], dp[i-six]+1)
+x = abs(x)
+y = abs(y)
 
-  for j in range(10):
-    nine = POW(9, j)
-    if nine > i:
-      break
-    else:
-      dp[i] = min(dp[i], dp[i-nine]+1)
+ma = x + y + cnt
 
-N = int(input().rstrip())
-print(dp[N])
+if (cnt < x):
+  x -= cnt
+elif (cnt < x+y):
+  x = 0
+  cnt -= x
+  y -= cnt
+else:
+  cnt -= (x+y)
+  x = 0
+  y = 0
+  x = cnt % 2
+
+mi = x + y
+
+if T == 1:
+  print(ma)
+else:
+  print(mi)
+
+
 
