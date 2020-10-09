@@ -36,7 +36,50 @@ def POW(x, n):
     n >>= 1
   return ret
 
-mp = OrderedDict({})
-mp[100] = 10
-print(10 in mp)
-print(100 in mp)
+N = int(input().rstrip())
+P = list(map(int, input().rstrip().split()))
+
+grid = VVI(N, N, True)
+dist = VVI(N, N)
+for i in range(N):
+  for j in range(N):
+    d = N-1
+    d = min(d, i)
+    d = min(d, j)
+    d = min(d, N-1-i)
+    d = min(d, N-1-j)
+    dist[i][j] = d
+
+dx = [0, 1, 0, -1] # u, r, d, l
+dy = [-1, 0, 1, 0] # u, r, d, l
+
+ans = 0
+for p in P:
+  p -= 1
+  x = p % N
+  y = p // N
+  ans += dist[y][x]
+  grid[y][x] = False
+  q = deque([])
+  q.append(p)
+  while len(q) > 0:
+    v = q.popleft()
+    vx = v % N
+    vy = v // N
+    vp = grid[vy][vx]
+    for i in range(4):
+      ux = vx + dx[i]
+      uy = vy + dy[i]
+      if 0 <= ux and ux < N and 0 <= uy and uy < N:
+        u = uy*N+ux
+        nxtd = dist[vy][vx]
+        if vp:
+          nxtd+=1
+        if dist[uy][ux] > nxtd:
+          dist[uy][ux] = nxtd
+          q.append(u)
+
+print(ans)
+
+
+
