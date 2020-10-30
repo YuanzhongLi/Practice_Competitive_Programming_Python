@@ -3,8 +3,7 @@ input = stdin.readline
 import copy as cp
 from collections import deque, OrderedDict
 
-LINF = 1001002003004005006
-INF = 1001001001
+INF = 1001002003004005006
 
 def VI(N, init=0):
   return [init for _ in range(N)]
