@@ -11,3 +11,9 @@ itertoolsのpermutationsを使用
 from itertools import permutations
 ```
 [link](./permutations.py)
+
+### gcd
+mathのgcdを使用
+```
+from math import gcd
+```
