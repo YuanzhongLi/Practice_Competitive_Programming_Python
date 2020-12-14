@@ -1,5 +1,5 @@
-# VERIFICATION: ABC 113_D
-# URL: https://atcoder.jp/contests/abc113/submissions/18554809
+# VERIFICATION: ABC 110_D
+# URL: https://atcoder.jp/contests/abc110/submissions/18773736
 
 MOD = 10**9 + 7
 class mint:
@@ -33,8 +33,8 @@ class mint:
 
 fact = [mint(0) for _ in range(200005)]
 fact[0] = mint(1)
-for i in range(200005):
+for i in range(1, 200005):
   fact[i] = fact[i-1] * mint(i)
 
 def modcmb(n,r):  #nCr = n!/(n-r)!r!
-  return fact[n] // fact[r] // fact[n-r]
+  return fact[n] / fact[r] / fact[n-r]
