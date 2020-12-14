@@ -17,3 +17,13 @@ mathのgcdを使用
 ```
 from math import gcd
 ```
+
+### ascii
+```
+ord('a')
+# result
+# 97
+
+chr(97)
+# result
+# 'a'
