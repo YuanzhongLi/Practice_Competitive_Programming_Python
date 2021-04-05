@@ -86,6 +86,8 @@ od = OrderdDict()
 od.move_to_end(key)
 # key-valueのペアを先頭に移動 (O(1))
 od.move_to_end(key, False)
+# 先頭のkeyの取得
+top_key = next(iter(od.keys()))
 ```
 
 #### 5-3. deque 注意
