@@ -1,0 +1,9 @@
+# mid
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        N = len(nums)
+        mem = [0 for _ in range(N+1)]
+        for a in nums:
+            mem[a] += 1
+            if mem[a] > 1:
+                return a
