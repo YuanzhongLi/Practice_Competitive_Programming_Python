@@ -12,7 +12,7 @@ class BIT:
     ret = 0
     while i >= 0:
       ret += self.data[i]
-      i = (i & (i+1)) - 1
+      i = (i & (i+1)) - 1 # 最後の1bitに1減算, i -= i & (-i) 1-indexed
     return ret
 
   # sum([i, j])
@@ -24,7 +24,7 @@ class BIT:
   def add(self, i, x):
     while i < self.n:
       self.data[i] += x
-      i |= i+1
+      i |= i+1 # 最後の1bitに1を加算, i += i & (-i) 1-indexed
     return
 
   # a[0]+...+a[ret] >= x
