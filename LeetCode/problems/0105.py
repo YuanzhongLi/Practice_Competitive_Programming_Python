@@ -1,67 +1,55 @@
-# mid
-
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-# time: O(N^2), space: O(1)
 class Solution:
-    def buildTree(self, po: List[int], io: List[int]) -> TreeNode:
-        head = TreeNode()
+    def buildTree(self, P: List[int], I: List[int]) -> TreeNode:
+        root = TreeNode()
         id = 0
         def rec(l, r, node):
             nonlocal id
-            top = po[id]; id += 1
+            top = P[id]; id += 1
             node.val = top
             pivot = -1
             for i in range(l, r):
-                if io[i] == top:
+                if I[i] == top:
                     pivot = i
                     break
 
+
             if l < pivot:
                 left = TreeNode()
                 node.left = left
                 rec(l, pivot, left)
-            else: node.left = None
 
             if r > pivot+1:
                 right = TreeNode()
                 node.right = right
                 rec(pivot+1, r, right)
-            else: node.right = None
 
-        rec(0, len(po), head)
-        return head
+        rec(0, len(P), root)
+        return root
 
-# time: O(N), space: O(N)
+# dictを使ってpivotをメモしておく
 class Solution:
-    def buildTree(self, po: List[int], io: List[int]) -> TreeNode:
+    def buildTree(self, P: List[int], I: List[int]) -> TreeNode:
         mp = {}
-        for i, a in enumerate(io):
-            mp[a] = i
+        for i, num in enumerate(I):
+            mp[num] = i
 
-        head = TreeNode()
+        root = TreeNode()
         id = 0
         def rec(l, r, node):
             nonlocal id
-            top = po[id]; id += 1
+            top = P[id]; id += 1
             node.val = top
-            pivot = mp[node.val]
+            pivot = mp[top]
 
             if l < pivot:
                 left = TreeNode()
                 node.left = left
                 rec(l, pivot, left)
-            else: node.left = None
 
             if r > pivot+1:
                 right = TreeNode()
                 node.right = right
                 rec(pivot+1, r, right)
-            else: node.right = None
 
-        rec(0, len(po), head)
-        return head
+        rec(0, len(P), root)
+        return root
