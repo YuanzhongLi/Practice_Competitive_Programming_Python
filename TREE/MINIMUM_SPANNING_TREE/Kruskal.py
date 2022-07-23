@@ -48,3 +48,31 @@ class Unionfind:
                 ret.append(table[i])
 
         return ret
+
+# VERIFICATIOIN: typical90 049
+# URL: https://atcoder.jp/contests/typical90/submissions/22938876
+
+def Kruskal(N, edges):
+    edges.sort()
+    uf = Unionfind(N)
+
+    ret = 0
+    for cost, u, v in edges:
+        if not uf.same(u, v):
+            ret += cost
+            uf.unite(u, v)
+
+    if uf.treeNum > 1: # can not build connected tree
+        return -1
+
+    return ret
+
+N, M = map(int, input().rstrip().rsplit())
+edges = []
+for i in range(M):
+  c, l, r = map(int, input().rstrip().rsplit())
+  edges.append((c, l-1, r))
+
+ans = Kruskal(N+1, edges)
+
+print(ans)
