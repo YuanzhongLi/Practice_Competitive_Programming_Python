@@ -30,7 +30,7 @@ def rotateR(u): # ２分探索木 u の右回転。回転した木を返す
   return v
 
 def rotateLR(t): # ２分探索木 t の二重回転(左回転 -> 右回転)。回転した木を返す
-  t.left = rotate(t.left)
+  t.left = rotateL(t.left)
   return rotateR(t)
 
 def rotateRL(t): # ２分探索木 t の二重回転(右回転 -> 左回転)。回転した木を返す

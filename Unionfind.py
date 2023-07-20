@@ -13,11 +13,12 @@ class Unionfind:
         self.treeNum += 1
 
     def root(self, x): # 根を探すと同時に経路上にある節点の親が根になるように代入
-        if self.par[x] == x:
+        par = self.par
+        if par[x] == x:
             return x
         else:
-            self.par[x] = Unionfind.root(self, self.par[x])
-            return self.par[x]
+            par[x] = Unionfind.root(self, par[x])
+            return par[x]
 
     def same(self, x, y):
         return Unionfind.root(self, x) == Unionfind.root(self, y)
