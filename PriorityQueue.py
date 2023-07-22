@@ -1,11 +1,12 @@
 # 小さい順にpopすることに注意！
 from heapq import heapify, heappop, heappush, heappushpop
 
+
 class PriorityQueue:
     def __init__(self, heap):
-        '''
+        """
         heap ... list
-        '''
+        """
         self.heap = heap
         heapify(self.heap)
 
@@ -30,12 +31,15 @@ class PriorityQueue:
 
 # -
 
+
 class Obj(object):
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
     def __repr__(self):
-        return '({0}, {1})'.format(self.x, self.y)
+        return "({0}, {1})".format(self.x, self.y)
+
     def __lt__(self, obj):
         return (self.x**2 + self.y**2) < (obj.x**2 + obj.y**2)
 
@@ -71,10 +75,10 @@ print(q1.pop())
 
 
 q2 = PriorityQueue([])
-a = 'abc'
-b = 'aaedd'
-c = 'daa'
-d = 'a'
+a = "abc"
+b = "aaedd"
+c = "daa"
+d = "a"
 q2.push(a)
 q2.push(b)
 q2.push(c)

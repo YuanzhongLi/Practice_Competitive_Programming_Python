@@ -1,4 +1,6 @@
 INF = int(1e18)
+
+
 def f(N, edges):
     graph = [[] for _ in range(N)]
     for a, b in edges:
@@ -11,6 +13,7 @@ def f(N, edges):
     id = 0
     ret = []
     aps = []
+
     def dfs(u, p):
         nonlocal id
         visited[u] = True
