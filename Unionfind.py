@@ -1,18 +1,18 @@
 class Unionfind:
     def __init__(self, N):
         self.N = N
-        self.par = [i for i in range(N)] # 節点
-        self.rank = [0 for _ in range(N)] # 木の高さ
-        self.size = [1 for _ in range(N)] # 節点が属する木の節点数
-        self.treeNum = N # 木の数
+        self.par = [i for i in range(N)]  # 節点
+        self.rank = [0 for _ in range(N)]  # 木の高さ
+        self.size = [1 for _ in range(N)]  # 節点が属する木の節点数
+        self.treeNum = N  # 木の数
 
-    def addNode(self, x): # 節点(木)追加
+    def addNode(self, x):  # 節点(木)追加
         self.par[x] = x
         self.rank[x] = 0
         self.size[x] = 1
         self.treeNum += 1
 
-    def root(self, x): # 根を探すと同時に経路上にある節点の親が根になるように代入
+    def root(self, x):  # 根を探すと同時に経路上にある節点の親が根になるように代入
         par = self.par
         if par[x] == x:
             return x
