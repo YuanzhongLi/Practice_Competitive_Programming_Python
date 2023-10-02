@@ -10,7 +10,7 @@ class Unionfind:
         roots = self.roots
         if roots[u] == u:
             return u
-
+        # この時点でroots[u] != uなので途中状態を意味する
         # rootsを再帰的に更新しながら、根のノードを求める
         roots[u] = self.root(roots[u])
         return roots[u]
