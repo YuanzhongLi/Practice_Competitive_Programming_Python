@@ -43,13 +43,20 @@ while E:
     edges.append([int(e) for e in list(input().rstrip().rsplit())])
     E -= 1
 
-edges.sort(lambda x: x[2])
 
-mst_cost = 0
-for edge in edges:
-    s, t, w = edge
-    if not uf.same(s, t):
-        uf.unite(s, t)
-        mst_cost += w
+def Kruskal(N: int, edges: list[list[int]]):
+    # 重みの小さい順でエッジをソート
+    edges.sort(key=lambda x: x[2])
 
-print(mst_cost)
+    uf = Unionfind(N)
+    mst_cost = 0
+    for edge in edges:
+        u, v, w = edge
+        if not uf.same(u, v):
+            uf.unite(u, v)
+            mst_cost += w
+
+    return mst_cost
+
+
+print(Kruskal(V, edges))
