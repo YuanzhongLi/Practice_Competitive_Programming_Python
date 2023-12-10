@@ -9,7 +9,7 @@ def Knapsack(N: int, W: int, values: list[int], weights: list[int]) -> int:
     for i in range(1, N + 1):
         vi, wi = values[i - 1], weights[i - 1]
         for w in range(1, W + 1):
-            dp[i][w] = max(dp[i][w], dp[i - 1][w], dp[i][w - 1])
+            dp[i][w] = max(dp[i][w], dp[i - 1][w])
             if w - wi >= 0:
                 dp[i][w] = max(dp[i][w], dp[i - 1][w - wi] + vi)
 
